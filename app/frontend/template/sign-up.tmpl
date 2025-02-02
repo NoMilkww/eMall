@@ -1,8 +1,8 @@
 {{ template "header" . }}
-<body>
+
 <div class="row justify-content-center">
     <div class="col-4">
-        <form>
+        <form method="POST" action="/auth/register">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -16,6 +16,9 @@
                 <label for="ConfirmPassword" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" id="ConfirmPassword">
             </div>
+            <div class="mb-3">
+                Already have an account? Click here to <a href="/sign-in">sign in</a>.
+            </div>
             <div class="mb-3 align-content-center">
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
@@ -23,5 +26,5 @@
         </form>
     </div>
 </div>
-</body>
+
 {{ template "footer"  }}

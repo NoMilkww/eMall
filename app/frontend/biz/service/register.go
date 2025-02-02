@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/hertz-contrib/sessions"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	auth "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/auth"
@@ -23,5 +24,8 @@ func (h *RegisterService) Run(req *auth.RegisterReq) (resp *common.Empty, err er
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
 	// todo edit your code
+	session := sessions.Default(h.RequestContext)
+	session.Set("user_id", 1)
+	err = session.Save()
 	return
 }
