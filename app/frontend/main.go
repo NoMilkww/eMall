@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"github.com/feeeeling/eMall/app/frontend/middleware"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
 	"github.com/joho/godotenv"
@@ -48,15 +49,20 @@ func main() {
 	h.LoadHTMLGlob("template/*")
 	h.Static("/static", "./")
 
+	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(consts.StatusOK, "about", utils.H{"title": "About"})
+	})
 	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(consts.StatusOK, "sign-in.tmpl", utils.H{"Title": "Sign-in"})
+		data := utils.H{
+			"Title": "Sign-in",
+			"Next":  ctx.Query("next"),
+		}
+		ctx.HTML(consts.StatusOK, "sign-in.tmpl", data)
 	})
 	h.GET("/sign-up", func(c context.Context, ctx *app.RequestContext) {
 		ctx.HTML(consts.StatusOK, "sign-up.tmpl", utils.H{"Title": "Sign-up"})
 	})
-	//h.POST("/auth/login", func(c context.Context, ctx *app.RequestContext) {
-	//
-	//})
+
 	h.Spin()
 }
 
@@ -102,4 +108,6 @@ func registerMiddleware(h *server.Hertz) {
 
 	// cores
 	h.Use(cors.Default())
+
+	middleware.Register(h)
 }

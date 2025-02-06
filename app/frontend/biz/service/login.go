@@ -22,6 +22,7 @@ func (h *LoginService) Run(req *auth.LoginReq) (resp *common.Empty, err error) {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
+
 	session := sessions.Default(h.RequestContext)
 	session.Set("user_id", 1)
 	err = session.Save()

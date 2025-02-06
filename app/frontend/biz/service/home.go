@@ -16,12 +16,14 @@ func NewHomeService(Context context.Context, RequestContext *app.RequestContext)
 	return &HomeService{RequestContext: RequestContext, Context: Context}
 }
 
-func (h *HomeService) Run(req *common.Empty) (resp map[string]any, err error) {
+func (h *HomeService) Run(req *common.Empty) (map[string]any, error) {
 	//defer func() {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
-	// todo edit your code
-	resp = make(map[string]any)
-	return
+	var resp = make(map[string]any)
+	var items []map[string]any
+	resp["title"] = "Hot Sales"
+	resp["items"] = items
+	return resp, nil
 }
