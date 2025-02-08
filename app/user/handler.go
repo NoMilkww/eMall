@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	user "github.com/feeeeling/eMall/app/user/kitex_gen/user"
+	user "github.com/feeeeling/eMall/rpc_gen/kitex_gen/user"
 	"github.com/feeeeling/eMall/app/user/biz/service"
 )
 

@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 	"testing"
-	user "github.com/feeeeling/eMall/app/user/kitex_gen/user"
+	user "github.com/feeeeling/eMall/rpc_gen/kitex_gen/user"
 )
 
 func TestLogin_Run(t *testing.T) {
