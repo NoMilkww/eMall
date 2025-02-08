@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/feeeeling/eMall/app/user/biz/dal"
+	"github.com/joho/godotenv"
 	consul "github.com/kitex-contrib/registry-consul"
 	"net"
 	"time"
@@ -16,6 +18,8 @@ import (
 )
 
 func main() {
+	_ = godotenv.Load()
+	dal.Init()
 	opts := kitexInit()
 
 	svr := userservice.NewServer(new(UserServiceImpl), opts...)
