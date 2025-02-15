@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"github.com/feeeeling/eMall/app/frontend/infra/rpc"
 	"github.com/feeeeling/eMall/app/frontend/middleware"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
@@ -35,6 +36,8 @@ func main() {
 	}
 	// init dal
 	// dal.Init()
+	rpc.Init()
+
 	address := conf.GetConf().Hertz.Address
 	h := server.New(server.WithHostPorts(address))
 
@@ -57,10 +60,10 @@ func main() {
 			"Title": "Sign-in",
 			"Next":  ctx.Query("next"),
 		}
-		ctx.HTML(consts.StatusOK, "sign-in.tmpl", data)
+		ctx.HTML(consts.StatusOK, "sign-in", data)
 	})
 	h.GET("/sign-up", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(consts.StatusOK, "sign-up.tmpl", utils.H{"Title": "Sign-up"})
+		ctx.HTML(consts.StatusOK, "sign-up", utils.H{"Title": "Sign-up"})
 	})
 
 	h.Spin()

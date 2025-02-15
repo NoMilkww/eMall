@@ -24,15 +24,15 @@ func NewRegisterService(ctx context.Context) *RegisterService {
 
 // Run create note info
 func (s *RegisterService) Run(req *user.RegisterReq) (resp *user.RegisterResp, err error) {
-	if req.Email == "" || req.Password == "" || req.ConfirmPassword == "" {
-		return nil, errors.New("email or password is empty")
+	if req.Email == "" || req.Password == "" || req.PasswordConfirm == "" {
+		return nil, errors.New("email or password is empty" + "e " + req.Email + "p " + req.Password + "c " + req.PasswordConfirm)
 	}
 	// check if email is valid
 	validateEmail := ValidateEmail{Email: req.Email}
 	if err = validator.Validate(validateEmail); err != nil {
 		return nil, errors.New("email format error")
 	}
-	if req.Password != req.ConfirmPassword {
+	if req.Password != req.PasswordConfirm {
 		return nil, errors.New("password not match")
 	}
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)

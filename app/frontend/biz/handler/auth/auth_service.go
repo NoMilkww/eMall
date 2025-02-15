@@ -44,12 +44,12 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	_, err = service.NewLoginService(ctx, c).Run(&req)
+	redirect, err := service.NewLoginService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
 	}
-	c.Redirect(consts.StatusOK, []byte("/"))
+	c.Redirect(consts.StatusOK, []byte(redirect))
 }
 
 // Logout .
