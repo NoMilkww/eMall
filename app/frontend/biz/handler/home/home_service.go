@@ -2,7 +2,6 @@ package home
 
 import (
 	"context"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/feeeeling/eMall/app/frontend/biz/service"
@@ -26,5 +25,5 @@ func Home(ctx context.Context, c *app.RequestContext) {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
 	}
-	c.HTML(consts.StatusOK, "home", resp)
+	c.HTML(consts.StatusOK, "home", utils.WrapResponse(ctx, c, resp))
 }

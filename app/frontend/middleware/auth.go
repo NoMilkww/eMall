@@ -15,8 +15,10 @@ const (
 func GlobalAuth() app.HandlerFunc {
 	return func(ctx context.Context, c *app.RequestContext) {
 		// TODO: 鉴权
+		//klog.Info("middleware GlobalAuth start")
 		session := sessions.Default(c)
-		context.WithValue(ctx, SessionUserId, session.Get("user_id"))
+		ctx = context.WithValue(ctx, SessionUserId, session.Get("user_id"))
+		//klog.Infof("middleware GlobalAuth session: %v", ctx.Value(SessionUserId))
 		c.Next(ctx)
 	}
 }

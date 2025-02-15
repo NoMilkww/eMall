@@ -2,7 +2,6 @@ package auth
 
 import (
 	"context"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/feeeeling/eMall/app/frontend/biz/service"
@@ -49,7 +48,8 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
 	}
-	c.Redirect(consts.StatusOK, []byte(redirect))
+	//c.HTML(consts.StatusOK, "about", redirect+util.ToString(ctx.Value("user_id")))
+	c.Redirect(consts.StatusFound, []byte(redirect))
 }
 
 // Logout .

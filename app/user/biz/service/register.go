@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/feeeeling/eMall/app/user/biz/dal/mysql"
 	"github.com/feeeeling/eMall/app/user/biz/model"
 	user "github.com/feeeeling/eMall/rpc_gen/kitex_gen/user"
@@ -24,17 +25,18 @@ func NewRegisterService(ctx context.Context) *RegisterService {
 
 // Run create note info
 func (s *RegisterService) Run(req *user.RegisterReq) (resp *user.RegisterResp, err error) {
-	if req.Email == "" || req.Password == "" || req.PasswordConfirm == "" {
-		return nil, errors.New("email or password is empty" + "e " + req.Email + "p " + req.Password + "c " + req.PasswordConfirm)
+	if req.Email == "" || req.Password == "" {
+		a := fmt.Sprintf("%v", req)
+		return nil, errors.New("email or password is empty " + a)
 	}
 	// check if email is valid
 	validateEmail := ValidateEmail{Email: req.Email}
 	if err = validator.Validate(validateEmail); err != nil {
 		return nil, errors.New("email format error")
 	}
-	if req.Password != req.PasswordConfirm {
-		return nil, errors.New("password not match")
-	}
+	//if req.Password != req.PasswordConfirm {
+	//	return nil, errors.New("password not match")
+	//}
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, err

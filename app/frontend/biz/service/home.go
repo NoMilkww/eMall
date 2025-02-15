@@ -23,6 +23,7 @@ func (h *HomeService) Run(req *common.Empty) (map[string]any, error) {
 	//}()
 	var resp = make(map[string]any)
 	var items []map[string]any
+
 	resp["title"] = "Hot Sales"
 	resp["items"] = items
 	return resp, nil

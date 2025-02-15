@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
+	"github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/auth"
 	"github.com/feeeeling/eMall/app/frontend/infra/rpc"
-	"github.com/feeeeling/eMall/rpc_gen/kitex_gen/user"
-
+	user "github.com/feeeeling/eMall/rpc_gen/kitex_gen/user"
 	"github.com/hertz-contrib/sessions"
 
 	"github.com/cloudwego/hertz/pkg/app"
@@ -21,7 +21,7 @@ func NewRegisterService(Context context.Context, RequestContext *app.RequestCont
 	return &RegisterService{RequestContext: RequestContext, Context: Context}
 }
 
-func (h *RegisterService) Run(req *user.RegisterReq) (resp *common.Empty, err error) {
+func (h *RegisterService) Run(req *auth.RegisterReq) (resp *common.Empty, err error) {
 	//defer func() {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
@@ -30,7 +30,7 @@ func (h *RegisterService) Run(req *user.RegisterReq) (resp *common.Empty, err er
 	userResp, err := rpc.UserClient.Register(h.Context, &user.RegisterReq{
 		Email:           req.Email,
 		Password:        req.Password,
-		PasswordConfirm: req.ConfirmPassword,
+		PasswordConfirm: req.PasswordConfirm,
 	})
 	if err != nil {
 		return nil, err

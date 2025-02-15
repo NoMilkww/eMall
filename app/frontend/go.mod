@@ -3,11 +3,11 @@ module github.com/feeeeling/eMall/app/frontend
 go 1.23.4
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
-replace "github.com/feeeeling/eMall/rpc_gen/kitex_gen/user" => "../../rpc_gen/kitex_gen/user"
 
 require (
 	github.com/cloudwego/hertz v0.9.5
-	github.com/feeeeling/eMall/rpc_gen v0.0.0-20250208082734-f4625090ae68
+	github.com/cloudwego/kitex v0.12.1
+	github.com/feeeeling/eMall/rpc_gen v0.0.0-20250215112123-fc1cf68cfbf8
 	github.com/hertz-contrib/cors v0.1.0
 	github.com/hertz-contrib/gzip v0.0.3
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
@@ -19,7 +19,7 @@ require (
 	github.com/kr/pretty v0.3.1
 	github.com/redis/go-redis/v9 v9.7.0
 	go.uber.org/zap v1.27.0
-	google.golang.org/protobuf v1.36.3
+	google.golang.org/protobuf v1.36.5
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gopkg.in/validator.v2 v2.0.1
 	gopkg.in/yaml.v2 v2.4.0
@@ -40,7 +40,6 @@ require (
 	github.com/cloudwego/frugal v0.2.3 // indirect
 	github.com/cloudwego/gopkg v0.1.3 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
-	github.com/cloudwego/kitex v0.12.1 // indirect
 	github.com/cloudwego/localsession v0.1.1 // indirect
 	github.com/cloudwego/netpoll v0.6.5 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect
