@@ -3,11 +3,13 @@ module github.com/feeeeling/eMall/app/frontend
 go 1.23.4
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
+replace (
+	github.com/feeeeling/eMall/rpc_gen => ../../rpc_gen
+)
 
 require (
 	github.com/cloudwego/hertz v0.9.5
 	github.com/cloudwego/kitex v0.12.1
-	github.com/feeeeling/eMall/rpc_gen v0.0.0-20250215112123-fc1cf68cfbf8
 	github.com/hertz-contrib/cors v0.1.0
 	github.com/hertz-contrib/gzip v0.0.3
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
@@ -48,6 +50,7 @@ require (
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
+	github.com/feeeeling/eMall/rpc_gen v0.0.0-20250215134027-e1a69bc0bd29
 	github.com/felixge/fgprof v0.9.3 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect

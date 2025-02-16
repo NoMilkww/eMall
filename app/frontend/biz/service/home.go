@@ -2,6 +2,10 @@ package service
 
 import (
 	"context"
+	"github.com/cloudwego/hertz/pkg/common/utils"
+	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/feeeeling/eMall/app/frontend/infra/rpc"
+	rpcproduct "github.com/feeeeling/eMall/rpc_gen/kitex_gen/product"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	common "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/common"
@@ -21,10 +25,13 @@ func (h *HomeService) Run(req *common.Empty) (map[string]any, error) {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
-	var resp = make(map[string]any)
-	var items []map[string]any
-
-	resp["title"] = "Hot Sales"
-	resp["items"] = items
-	return resp, nil
+	p, err := rpc.ProductClient.ListProducts(h.Context, &rpcproduct.ListProductsReq{})
+	if err != nil {
+		return nil, err
+	}
+	klog.Infof("%v", p)
+	return utils.H{
+		"title": "Home",
+		"items": p.Products,
+	}, nil
 }

@@ -7,7 +7,6 @@ import (
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/feeeeling/eMall/app/frontend/biz/service"
 	"github.com/feeeeling/eMall/app/frontend/biz/utils"
-	common "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/common"
 	product "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/product"
 )
 
@@ -22,8 +21,7 @@ func GetProduct(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp := &common.Empty{}
-	resp, err = service.NewGetProductService(ctx, c).Run(&req)
+	resp, err := service.NewGetProductService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
@@ -43,8 +41,7 @@ func SearchProduct(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp := &common.Empty{}
-	resp, err = service.NewSearchProductService(ctx, c).Run(&req)
+	resp, err := service.NewSearchProductService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return

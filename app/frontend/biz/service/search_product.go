@@ -2,10 +2,12 @@ package service
 
 import (
 	"context"
+	"github.com/cloudwego/hertz/pkg/common/utils"
+	"github.com/feeeeling/eMall/app/frontend/infra/rpc"
 
 	"github.com/cloudwego/hertz/pkg/app"
-	common "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/common"
 	product "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/product"
+	rpcproduct "github.com/feeeeling/eMall/rpc_gen/kitex_gen/product"
 )
 
 type SearchProductService struct {
@@ -17,11 +19,14 @@ func NewSearchProductService(Context context.Context, RequestContext *app.Reques
 	return &SearchProductService{RequestContext: RequestContext, Context: Context}
 }
 
-func (h *SearchProductService) Run(req *product.SearchProductReq) (resp *common.Empty, err error) {
-	//defer func() {
-	// hlog.CtxInfof(h.Context, "req = %+v", req)
-	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
-	//}()
-	// todo edit your code
-	return
+func (h *SearchProductService) Run(req *product.SearchProductReq) (resp map[string]any, err error) {
+	p, err := rpc.ProductClient.SearchProducts(h.Context, &rpcproduct.SearchProductsReq{Query: req.Q})
+	if err != nil {
+		return nil, err
+	}
+
+	return utils.H{
+		"items": p.Results,
+		"q":     req.Q,
+	}, nil
 }
