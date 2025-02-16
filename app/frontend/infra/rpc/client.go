@@ -4,13 +4,15 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/feeeeling/eMall/app/frontend/conf"
 	frontendUtils "github.com/feeeeling/eMall/app/frontend/utils"
+	"github.com/feeeeling/eMall/rpc_gen/kitex_gen/product/productcatalogservice"
 	"github.com/feeeeling/eMall/rpc_gen/kitex_gen/user/userservice"
 	consul "github.com/kitex-contrib/registry-consul"
 	"sync"
 )
 
 var (
-	UserClient userservice.Client
+	UserClient    userservice.Client
+	ProductClient productcatalogservice.Client
 
 	Once sync.Once
 )
