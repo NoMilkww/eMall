@@ -4,6 +4,7 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/feeeeling/eMall/app/frontend/conf"
 	frontendUtils "github.com/feeeeling/eMall/app/frontend/utils"
+	"github.com/feeeeling/eMall/rpc_gen/kitex_gen/cart/cartservice"
 	"github.com/feeeeling/eMall/rpc_gen/kitex_gen/product/productcatalogservice"
 	"github.com/feeeeling/eMall/rpc_gen/kitex_gen/user/userservice"
 	consul "github.com/kitex-contrib/registry-consul"
@@ -13,6 +14,7 @@ import (
 var (
 	UserClient    userservice.Client
 	ProductClient productcatalogservice.Client
+	CartClient    cartservice.Client
 
 	Once sync.Once
 )
@@ -21,6 +23,7 @@ func Init() {
 	Once.Do(func() {
 		initUserClient()
 		initProductClient()
+		initCartClient()
 	})
 }
 
@@ -39,5 +42,14 @@ func initProductClient() {
 	frontendUtils.MustHandleError(err)
 	opts = append(opts, client.WithResolver(r))
 	ProductClient, err = productcatalogservice.NewClient("product", opts...)
+	frontendUtils.MustHandleError(err)
+}
+
+func initCartClient() {
+	var opts []client.Option
+	r, err := consul.NewConsulResolver(conf.GetConf().Hertz.RegistryAddr)
+	frontendUtils.MustHandleError(err)
+	opts = append(opts, client.WithResolver(r))
+	CartClient, err = cartservice.NewClient("cart", opts...)
 	frontendUtils.MustHandleError(err)
 }

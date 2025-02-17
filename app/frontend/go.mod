@@ -3,9 +3,8 @@ module github.com/feeeeling/eMall/app/frontend
 go 1.23.4
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
-replace (
-	github.com/feeeeling/eMall/rpc_gen => ../../rpc_gen
-)
+
+replace github.com/feeeeling/eMall/rpc_gen => ../../rpc_gen
 
 require (
 	github.com/cloudwego/hertz v0.9.5
