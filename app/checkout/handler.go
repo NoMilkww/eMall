@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	checkout "github.com/feeeeling/eMall/app/checkout/kitex_gen/checkout"
 	"github.com/feeeeling/eMall/app/checkout/biz/service"
+	checkout "github.com/feeeeling/eMall/rpc_gen/kitex_gen/checkout"
 )
 
 // CheckoutServiceImpl implements the last service interface defined in the IDL.

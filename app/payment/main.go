@@ -1,20 +1,25 @@
 package main
 
 import (
+	"github.com/feeeeling/eMall/app/payment/biz/dal"
+	"github.com/joho/godotenv"
+	consul "github.com/kitex-contrib/registry-consul"
 	"net"
 	"time"
 
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
-	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
 	"github.com/feeeeling/eMall/app/payment/conf"
 	"github.com/feeeeling/eMall/app/payment/kitex_gen/payment/paymentservice"
+	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func main() {
+	_ = godotenv.Load()
+	dal.Init()
 	opts := kitexInit()
 
 	svr := paymentservice.NewServer(new(PaymentServiceImpl), opts...)
@@ -33,10 +38,14 @@ func kitexInit() (opts []server.Option) {
 	}
 	opts = append(opts, server.WithServiceAddr(addr))
 
+	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0])
+	if err != nil {
+		klog.Fatal(err)
+	}
 	// service info
 	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
 		ServiceName: conf.GetConf().Kitex.Service,
-	}))
+	}), server.WithRegistry(r))
 
 	// klog
 	logger := kitexlogrus.NewLogger()
