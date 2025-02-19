@@ -3,7 +3,6 @@ package service
 import (
 	"context"
 	"github.com/cloudwego/hertz/pkg/common/utils"
-	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/feeeeling/eMall/app/frontend/infra/rpc"
 	rpcproduct "github.com/feeeeling/eMall/rpc_gen/kitex_gen/product"
 
@@ -29,7 +28,6 @@ func (h *HomeService) Run(req *common.Empty) (map[string]any, error) {
 	if err != nil {
 		return nil, err
 	}
-	klog.Infof("%v", p)
 	return utils.H{
 		"title": "Home",
 		"items": p.Products,

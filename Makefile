@@ -26,3 +26,8 @@ gen-frontend-category:
 .PHONY: gen-frontend-cart
 gen-frontend-cart:
 	@cd app/frontend && cwgo server --type HTTP --service frontend --module github.com/feeeeling/eMall/app/frontend -I ../../idl --idl ../../idl/frontend/cart_page.proto
+
+
+.PHONY: gen-frontend-checkout
+gen-frontend-checkout:
+	@cd app/frontend && cwgo server --type HTTP --service frontend --module github.com/feeeeling/eMall/app/frontend -I ../../idl --idl ../../idl/frontend/checkout_page.proto

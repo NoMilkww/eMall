@@ -58,7 +58,7 @@ func main() {
 	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
 		data := utils.H{
 			"Title": "Sign-in",
-			"Next":  ctx.Query("next"),
+			"next":  ctx.Query("next"),
 		}
 		ctx.HTML(consts.StatusOK, "sign-in", data)
 	})

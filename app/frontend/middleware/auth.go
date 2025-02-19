@@ -21,7 +21,10 @@ func Auth() app.HandlerFunc {
 		session := sessions.Default(c)
 		userId := session.Get("user_id")
 		if userId == nil {
-			c.Redirect(302, []byte("/sign-in？next="+c.FullPath()))
+			uri := []byte("/sign-in?next=" + c.FullPath())
+			//klog.Infof("%s", uri)
+			c.Redirect(302, uri)
+
 			c.Abort()
 			return
 		}

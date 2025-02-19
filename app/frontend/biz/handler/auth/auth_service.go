@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/feeeeling/eMall/app/frontend/biz/service"
 	"github.com/feeeeling/eMall/app/frontend/biz/utils"
 	auth "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/auth"
@@ -37,6 +38,7 @@ func Register(ctx context.Context, c *app.RequestContext) {
 func Login(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req auth.LoginReq
+
 	err = c.BindAndValidate(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
@@ -49,6 +51,7 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 	//c.HTML(consts.StatusOK, "about", redirect+util.ToString(ctx.Value("user_id")))
+	klog.Info(redirect)
 	c.Redirect(consts.StatusFound, []byte(redirect))
 }
 
