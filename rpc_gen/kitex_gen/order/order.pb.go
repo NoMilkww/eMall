@@ -381,7 +381,7 @@ type Order struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OrderItems   []*OrderItem `protobuf:"bytes,1,rep,name=order_items,json=orderItems,proto3" json:"order_items,omitempty"`
+	Items     []*OrderItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 	OrderId      string       `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	UserId       uint32       `protobuf:"varint,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	UserCurrency string       `protobuf:"bytes,4,opt,name=user_currency,json=userCurrency,proto3" json:"user_currency,omitempty"`
@@ -422,9 +422,9 @@ func (*Order) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *Order) GetOrderItems() []*OrderItem {
+func (x *Order) GetItems() []*OrderItem {
 	if x != nil {
-		return x.OrderItems
+		return x.Items
 	}
 	return nil
 }
