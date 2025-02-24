@@ -498,8 +498,8 @@ func (x *PlaceOrderReq) fastWriteField5(buf []byte) (offset int) {
 	if x.Items == nil {
 		return offset
 	}
-	for i := range x.GetOrderItems() {
-		offset += fastpb.WriteMessage(buf[offset:], 5, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		offset += fastpb.WriteMessage(buf[offset:], 5, x.GetItems()[i])
 	}
 	return offset
 }
@@ -595,8 +595,8 @@ func (x *Order) fastWriteField1(buf []byte) (offset int) {
 	if x.Items == nil {
 		return offset
 	}
-	for i := range x.GetOrderItems() {
-		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetItems()[i])
 	}
 	return offset
 }
@@ -767,8 +767,8 @@ func (x *PlaceOrderReq) sizeField5() (n int) {
 	if x.Items == nil {
 		return n
 	}
-	for i := range x.GetOrderItems() {
-		n += fastpb.SizeMessage(5, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		n += fastpb.SizeMessage(5, x.GetItems()[i])
 	}
 	return n
 }
@@ -864,8 +864,8 @@ func (x *Order) sizeField1() (n int) {
 	if x.Items == nil {
 		return n
 	}
-	for i := range x.GetOrderItems() {
-		n += fastpb.SizeMessage(1, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		n += fastpb.SizeMessage(1, x.GetItems()[i])
 	}
 	return n
 }
