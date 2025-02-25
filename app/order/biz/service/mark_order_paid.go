@@ -2,7 +2,8 @@ package service
 
 import (
 	"context"
-	order "github.com/feeeeling/eMall/app/order/kitex_gen/order"
+	//order "github.com/feeeeling/eMall/app/order/kitex_gen/order"
+	//MarkOrderPaid    order "github.com/feeeeling/eMall/rpc_gen/kitex_gen/order"  //replace
 )
 
 type MarkOrderPaidService struct {
@@ -13,8 +14,9 @@ func NewMarkOrderPaidService(ctx context.Context) *MarkOrderPaidService {
 }
 
 // Run create note info
-func (s *MarkOrderPaidService) Run(req *order.MarkOrderPaidReq) (resp *order.MarkOrderPaidResp, err error) {
-	// Finish your business logic.
+//MarkOrderPaid    
+// func (s *MarkOrderPaidService) Run(req *order.MarkOrderPaidReq) (resp *order.MarkOrderPaidResp, err error) {
+// 	// Finish your business logic.
 
-	return
-}
+// 	return
+// }

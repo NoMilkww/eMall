@@ -4,6 +4,8 @@ go 1.23.4
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
+replace github.com/feeeeling/eMall/rpc_gen/kitex_gen/order => /root/eMall/rpc_gen/kitex_gen/order
+
 require (
 	github.com/cloudwego/fastpb v0.0.5
 	github.com/cloudwego/kitex v0.12.1

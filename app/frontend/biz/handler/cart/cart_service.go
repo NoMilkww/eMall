@@ -28,7 +28,7 @@ func GetCart(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	c.HTML(consts.StatusOK, "cart", utils.WrapResponse(ctx, c, resp))
+	c.HTML(consts.StatusOK, "cart", utils.WarpResponse(ctx, c, resp))
 }
 
 // AddCartItem .

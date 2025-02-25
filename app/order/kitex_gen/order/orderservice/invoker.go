@@ -4,7 +4,8 @@ package orderservice
 
 import (
 	server "github.com/cloudwego/kitex/server"
-	order "github.com/feeeeling/eMall/app/order/kitex_gen/order"
+	//order "github.com/feeeeling/eMall/app/order/kitex_gen/order"
+	order "github.com/feeeeling/eMall/rpc_gen/kitex_gen/order"  //replace
 )
 
 // NewInvoker creates a server.Invoker with the given handler and options.

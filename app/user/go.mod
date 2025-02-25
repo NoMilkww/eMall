@@ -5,6 +5,7 @@ go 1.23.4
 replace (
 	github.com/apache/thrift => github.com/apache/thrift v0.13.0
 	github.com/feeeeling/eMall/rpc_gen/ => ../../rpc_gen
+	github.com/feeeeling/eMall/rpc_gen/kitex_gen/order => /root/eMall/rpc_gen/kitex_gen/order
 )
 
 require (

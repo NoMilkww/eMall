@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	order "github.com/feeeeling/eMall/app/order/kitex_gen/order"
+	//order "github.com/feeeeling/eMall/app/order/kitex_gen/order"
+	order "github.com/feeeeling/eMall/rpc_gen/kitex_gen/order"
 	"github.com/feeeeling/eMall/app/order/biz/service"
 )
 
@@ -24,8 +25,9 @@ func (s *OrderServiceImpl) ListOrder(ctx context.Context, req *order.ListOrderRe
 }
 
 // MarkOrderPaid implements the OrderServiceImpl interface.
-func (s *OrderServiceImpl) MarkOrderPaid(ctx context.Context, req *order.MarkOrderPaidReq) (resp *order.MarkOrderPaidResp, err error) {
-	resp, err = service.NewMarkOrderPaidService(ctx).Run(req)
+//MarkOrderPaid
+// func (s *OrderServiceImpl) MarkOrderPaid(ctx context.Context, req *order.MarkOrderPaidReq) (resp *order.MarkOrderPaidResp, err error) {
+// 	resp, err = service.NewMarkOrderPaidService(ctx).Run(req)
 
-	return resp, err
-}
+// 	return resp, err
+// }

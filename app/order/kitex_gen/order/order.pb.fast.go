@@ -74,7 +74,7 @@ func (x *Address) fastReadField4(buf []byte, _type int8) (offset int, err error)
 }
 
 func (x *Address) fastReadField5(buf []byte, _type int8) (offset int, err error) {
-	x.ZipCode, offset, err = fastpb.ReadInt32(buf, _type)
+	x.ZipCode, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -149,7 +149,7 @@ func (x *PlaceOrderReq) fastReadField5(buf []byte, _type int8) (offset int, err 
 	if err != nil {
 		return offset, err
 	}
-	x.OrderItems = append(x.OrderItems, &v)
+	x.Items = append(x.Items, &v)
 	return offset, nil
 }
 
@@ -329,7 +329,7 @@ func (x *Order) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	if err != nil {
 		return offset, err
 	}
-	x.OrderItems = append(x.OrderItems, &v)
+	x.Items = append(x.Items, &v)
 	return offset, nil
 }
 
@@ -491,10 +491,10 @@ func (x *Address) fastWriteField4(buf []byte) (offset int) {
 }
 
 func (x *Address) fastWriteField5(buf []byte) (offset int) {
-	if x.ZipCode == 0 {
+	if x.ZipCode == "" {
 		return offset
 	}
-	offset += fastpb.WriteInt32(buf[offset:], 5, x.GetZipCode())
+	offset += fastpb.WriteString(buf[offset:], 5, x.GetZipCode())
 	return offset
 }
 
@@ -543,11 +543,11 @@ func (x *PlaceOrderReq) fastWriteField4(buf []byte) (offset int) {
 }
 
 func (x *PlaceOrderReq) fastWriteField5(buf []byte) (offset int) {
-	if x.OrderItems == nil {
+	if x.Items == nil {
 		return offset
 	}
-	for i := range x.GetOrderItems() {
-		offset += fastpb.WriteMessage(buf[offset:], 5, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		offset += fastpb.WriteMessage(buf[offset:], 5, x.GetItems()[i])
 	}
 	return offset
 }
@@ -640,11 +640,11 @@ func (x *Order) FastWrite(buf []byte) (offset int) {
 }
 
 func (x *Order) fastWriteField1(buf []byte) (offset int) {
-	if x.OrderItems == nil {
+	if x.Items == nil {
 		return offset
 	}
-	for i := range x.GetOrderItems() {
-		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetItems()[i])
 	}
 	return offset
 }
@@ -792,10 +792,10 @@ func (x *Address) sizeField4() (n int) {
 }
 
 func (x *Address) sizeField5() (n int) {
-	if x.ZipCode == 0 {
+	if x.ZipCode == "" {
 		return n
 	}
-	n += fastpb.SizeInt32(5, x.GetZipCode())
+	n += fastpb.SizeString(5, x.GetZipCode())
 	return n
 }
 
@@ -844,11 +844,11 @@ func (x *PlaceOrderReq) sizeField4() (n int) {
 }
 
 func (x *PlaceOrderReq) sizeField5() (n int) {
-	if x.OrderItems == nil {
+	if x.Items == nil {
 		return n
 	}
-	for i := range x.GetOrderItems() {
-		n += fastpb.SizeMessage(5, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		n += fastpb.SizeMessage(5, x.GetItems()[i])
 	}
 	return n
 }
@@ -941,11 +941,11 @@ func (x *Order) Size() (n int) {
 }
 
 func (x *Order) sizeField1() (n int) {
-	if x.OrderItems == nil {
+	if x.Items == nil {
 		return n
 	}
-	for i := range x.GetOrderItems() {
-		n += fastpb.SizeMessage(1, x.GetOrderItems()[i])
+	for i := range x.GetItems() {
+		n += fastpb.SizeMessage(1, x.GetItems()[i])
 	}
 	return n
 }

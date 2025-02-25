@@ -1,7 +1,8 @@
-package home
+package order
 
 import (
 	"context"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/feeeeling/eMall/app/frontend/biz/service"
@@ -9,9 +10,9 @@ import (
 	common "github.com/feeeeling/eMall/app/frontend/hertz_gen/frontend/common"
 )
 
-// Home .
-// @router / [GET]
-func Home(ctx context.Context, c *app.RequestContext) {
+// OrderList .
+// @router /order [GET]
+func OrderList(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req common.Empty
 	err = c.BindAndValidate(&req)
@@ -20,10 +21,11 @@ func Home(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp, err := service.NewHomeService(ctx, c).Run(&req)
+	resp, err := service.NewOrderListService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
 	}
-	c.HTML(consts.StatusOK, "home", utils.WarpResponse(ctx, c, resp))
+
+	c.HTML(consts.StatusOK, "order", utils.WarpResponse(ctx, c, resp))
 }
